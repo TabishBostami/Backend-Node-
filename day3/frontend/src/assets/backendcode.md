@@ -17,37 +17,28 @@ function App() {
         console.log(error);
       });
   }, []);
-  
-  
-   
+
+  const admnRef = useRef(null);
+  const studRef = useRef(null);
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    const id = parseInt(document.querySelector("#admn").value);
-    console.log(id)
-    // const studentdata = data.find(stud => stud.id === id );
-    // setStudent(studentdata)
-    const studentdata = data.filter((item)=>{
-      return item.id === id
-    })
-    setStudent(studentdata[0])
-
-
-  }; 
-  
+    const id = parseInt(admnRef.current.value);
+    const foundStudent = data.find(student => student.id === id);
+    setStudent(foundStudent);
+  };
 
   return (
     <>
-      <form className="stud" onSubmit={handleSubmit}>
-        <label htmlFor="admn">Admn number</label>
-        <input className="admn" id="admn" type="text" />
-
+      <form ref={studRef} className="stud" onSubmit={handleSubmit}>
+        <label htmlFor="admn">Admn No.</label>
+        <input className="admn" id="admn" type="text" ref={admnRef} />
         <button id="submit" type="submit">
           Check
         </button>
-        
       </form>
-      {student&&(
+
+      {student && (
         <div className="student-details">
           <h2>Student Details</h2>
           <p><strong>Name:</strong> {student.name}</p>
@@ -59,7 +50,6 @@ function App() {
           <p><strong>Address:</strong> {`${student.address.street}, ${student.address.city}, ${student.address.state} ${student.address.zip}`}</p>
         </div>
       )}
-      
     </>
   );
 }
