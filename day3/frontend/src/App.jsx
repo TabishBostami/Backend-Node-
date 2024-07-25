@@ -49,7 +49,7 @@ function App() {
       </form>
       {student&&(
         <div className="student-details">
-          <h2>Student Details</h2>
+          <h2>Students <Details></Details></h2>
           <p><strong>Name:</strong> {student.name}</p>
           <p><strong>Age:</strong> {student.age}</p>
           <p><strong>Grade:</strong> {student.grade}</p>
